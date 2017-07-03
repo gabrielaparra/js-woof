@@ -5,6 +5,12 @@ const passport = require('passport');
 const router = express.Router();
 
 //--------------------REGISTRATION--------------------------
+//Step 1: displaying the signup form
+router.get('/signup', (req, res, next) => {
+  res.render('authorization-views/signup-view.ejs');
+});
+
+//Step 2: processing the submitted signup information
 router.post('/signup', (req, res, next) => {
   if (req.body.signupEmail === '' || req.body.signupPassword === '' || req.body.signupFullName === '') {
     res.locals.messageForDumbUsers = 'Please provide your name, email, and password.';
@@ -57,6 +63,16 @@ router.post('/signup', (req, res, next) => {
 
 
 //-------------------LOG IN------------------------
+//1st step: displaying login form
+router.get('/login', (req, res, next) => {
+  if (req.user) {
+    res.redirect('/');
+  } else {
+    res.render('authorization-views/login-view.ejs');
+  }
+});
+
+//2nd step: authentication
 router.post('/login', passport.authenticate(
   'local',
   //1st arg -> name of the strategy used to log in

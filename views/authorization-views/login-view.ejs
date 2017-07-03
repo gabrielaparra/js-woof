@@ -1,0 +1,40 @@
+<section id="booking" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="ser-title">Book an appointment</h2>
+        <hr class="botm-line">
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <!-- LOG IN -->
+        <h3>Welcome Back!</h3>
+        <div class="space"></div>
+
+        <form action="/login" method="post" role="form" id="login" class="contactForm">
+          <div class="form-group">
+            <input type="email" class="form-control br-radius-zero" name="loginEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email address" />
+            <div class="validation"></div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control br-radius-zero" name="loginPassword" id="subject" placeholder="Your Password" data-rule="minlen:4" data-msg="Please enter at least 8 characters" />
+            <div class="validation"></div>
+          </div>
+          <div class="form-action">
+            <button type="submit" class="btn btn-form btn-login">LOG IN NOW</button>
+          </div>
+        </form>
+
+      </div>
+      <div class="col-md-8 col-sm-8 marb20">
+        <div class="contact-info">
+            <h3 class="cnt-ttl">First Time? Register</h3>
+            <p><strong> Sign up today and get 10% off your first visit </strong></p>
+            <div class="space"></div>
+            <div id="sendmessage">Your message has been sent. Thank you!</div>
+            <div id="errormessage"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
