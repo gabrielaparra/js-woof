@@ -15,6 +15,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  phoneNumber: { type: String },
   encryptedPassword: {
     type: String,
     required: true,

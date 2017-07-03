@@ -5,16 +5,16 @@ const passport = require('passport');
 const router = express.Router();
 
 //--------------------REGISTRATION--------------------------
-//STEP 1 of signup: displaying the signup form
-router.get('/signup', (req, res, next) => {
-  res.render('authorization-views/signup-view.ejs');
-});
+// //STEP 1 of signup: displaying the signup form
+// router.get('/signup', (req, res, next) => {
+//   res.render('authorization-views/signup-view.ejs');
+// });
 
 //STEP 2 of signup: processing the information submitted in the signup form
-router.post('/signup', (req, res, next) => {
+router.post('/', (req, res, next) => {
   if (req.body.signupEmail === '' || req.body.signupPassword === '' || req.body.signupFullName === '') {
-    res.locals.messageForDumbUsers = 'Please provide all fields.';
-    res.render('authorization-views/signup-view.ejs');
+    res.locals.messageForDumbUsers = 'Please provide your name, email, and password.';
+    res.render('index.ejs');
     return;
   }
 
@@ -32,7 +32,7 @@ router.post('/signup', (req, res, next) => {
       if (userFromDb) {
         res.locals.messageForDumbUsers = 'Sorry, that email account is already registered.';
         //display the form again with the feedback message
-        res.render('authorization-views/signup-view.ejs');
+        res.render('index.ejs');
         return;
       }
 
@@ -44,6 +44,7 @@ router.post('/signup', (req, res, next) => {
       const theUser = new UserModel({
         fullName: req.body.signupFullName,
         email: req.body.signupEmail,
+        phoneNumber: req.body.signupPhoneNumber,
         encryptedPassword: scrambledPassword
       });
 

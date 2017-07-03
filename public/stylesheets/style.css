@@ -375,12 +375,18 @@ contact us
 .space {
     margin-top: 40px;
 }
-.btn-form, .btn-form:hover, .btn-form:focus {
-    background-color: #0cb8b6;
+.btn-form {
+    background-color: rgba(70, 173, 112, 0.9);
     color: #fff;
     border-radius: 0px;
     padding: 10px 20px;
 }
+
+.btn-form:hover, .btn-form:focus {
+	color: #fff;
+	background-color: rgba(255, 183, 55, 0.9);
+}
+
 .br-radius-zero {
     border-radius: 0px;
 }
