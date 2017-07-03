@@ -77,6 +77,9 @@ app.use('/', index);
 const authorizationRoutes = require('./routes/authorization-routes.js');
 app.use('/', authorizationRoutes);
 
+const galleryRoutes = require('./routes/gallery-routes.js');
+app.use('/', galleryRoutes);
+
 //----------------END OF ROUTES---------------------
 
 // catch 404 and forward to error handler

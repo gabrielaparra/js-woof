@@ -15,9 +15,10 @@
 				    <div class="collapse navbar-collapse navbar-right" id="myNavbar">
 				      <ul class="nav navbar-nav">
 				        <li class="active"><a href="#banner">Home</a></li>
+								<li class=""><a href="#">Account</a></li>
 				        <li class=""><a href="#service">Services</a></li>
+								<li class=""><a href="/gallery">Gallery</a></li>
 				        <li class=""><a href="#about">About</a></li>
-				        <li class=""><a href="#testimonial">Testimonial</a></li>
 				        <li class=""><a href="#contact">Contact</a></li>
 				      </ul>
 				    </div>
@@ -33,10 +34,10 @@
 						<div class="banner-text text-center">
 							<h1 class="white">Organic Dog Grooming</h1>
 							<p>
-                No harsh chemicals, only natural and organic ingredients go into
-                our products. <br>Give your dog the best kind of grooming.
+                No harsh chemicals, we groom your dog with only organically made products
+								<br>Give your dog the best kind of grooming.
               </p>
-							<a href="#contact" class="btn btn-appoint">Book an Appointment</a>
+							<a href="#booking" class="btn btn-appoint">Book an Appointment</a>
 						</div>
 						<div class="overlay-detail text-center">
 			               <a href="#service"><i class="fa fa-angle-down"></i></a>
@@ -317,31 +318,43 @@
 	</section>
 	<!--cta-->
 	<!--contact-->
-	<section id="contact" class="section-padding">
+	<section id="booking" class="section-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h2 class="ser-title">Contact us</h2>
+					<h2 class="ser-title">Book an appointment</h2>
 					<hr class="botm-line">
 				</div>
 				<div class="col-md-4 col-sm-4">
-			      <h3>Contact Info</h3>
-			      <div class="space"></div>
-			      <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i>321 Awesome Street<br>
-			        New York, NY 17022</p>
-			      <div class="space"></div>
-			      <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>info@companyname.com</p>
-			      <div class="space"></div>
-			      <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+1 800 123 1234</p>
-			    </div>
+					<!-- LOG IN -->
+		      <h3>Returning Customer</h3>
+					<p><strong> Welcome Back! </strong></p>
+		      <div class="space"></div>
+
+					<form action="/login" method="post" role="form" id="login" class="contactForm">
+						<div class="form-group">
+							<input type="email" class="form-control br-radius-zero" name="loginEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email address" />
+							<div class="validation"></div>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control br-radius-zero" name="loginPassword" id="subject" placeholder="Your Password" data-rule="minlen:4" data-msg="Please enter at least 8 characters" />
+							<div class="validation"></div>
+						</div>
+						<div class="form-action">
+							<button type="submit" class="btn btn-form btn-login">LOG IN NOW</button>
+						</div>
+					</form>
+
+			  </div>
 				<div class="col-md-8 col-sm-8 marb20">
 					<div class="contact-info">
-							<h3 class="cnt-ttl">Sign up today and get 10% off your first visit.</h3>
+							<h3 class="cnt-ttl">First Time? Register</h3>
+							<p><strong> Sign up today and get 10% off your first visit </strong></p>
 							<div class="space"></div>
 	            <div id="sendmessage">Your message has been sent. Thank you!</div>
               <div id="errormessage"></div>
 							<!-- SIGNUP FORM -->
-							<form action="/" method="post" role="form" id="signup" class="contactForm">
+							<form action="/signup" method="post" role="form" id="signup" class="contactForm">
 						    <div class="form-group">
 	                <input type="text" name="signupFullName" class="form-control br-radius-zero" id="name" placeholder="Your Full Name" data-rule="minlen:4" data-msg="Please enter at least 4 characters" />
 	                <div class="validation"></div>
@@ -359,7 +372,7 @@
 	                <div class="validation"></div>
 	              </div>
 								<div class="form-action">
-									<button type="submit" class="btn btn-form">Register Now</button>
+									<button type="submit" class="btn btn-form">REGISTER NOW</button>
 								</div>
 							</form>
 
@@ -376,10 +389,13 @@
 				<div class="row">
 					<div class="col-md-4 col-sm-4 marb20">
 							<div class="ftr-tle">
-								<h4 class="white no-padding">About Us</h4>
+								<h4 class="white no-padding">Contact Us</h4>
 							</div>
 							<div class="info-sec">
-								<p>Praesent convallis tortor et enim laoreet, vel consectetur purus latoque penatibus et dis parturient.</p>
+						      <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i>321 Awesome Street<br>
+						        Miami, FL 33131</p>
+						      <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>hello@woofgroomers.com</p><br>
+						      <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+1 305 123 1234</p>
 							</div>
 					</div>
 					<div class="col-md-4 col-sm-4 marb20">

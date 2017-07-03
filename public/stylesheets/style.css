@@ -382,6 +382,11 @@ contact us
     padding: 10px 20px;
 }
 
+.btn-login {
+	color: #fff;
+	background-color: rgba(51, 122, 183, 0.9);
+}
+
 .btn-form:hover, .btn-form:focus {
 	color: #fff;
 	background-color: rgba(255, 183, 55, 0.9);
@@ -431,7 +436,7 @@ contact us
 footer
 ***************************************/
 #footer{
-	background-color: #325C6A;
+	background-color: rgba(41, 48, 46, 1);
 }
 .ftr-tle {
     height: 50px;
