@@ -32,7 +32,7 @@ router.post('/signup', (req, res, next) => {
       if (userFromDb) {
         res.locals.messageForDumbUsers = 'Sorry, that email account is already registered.';
         //display the form again with the feedback message
-        res.render('index.ejs');
+        res.redirect('/login');
         return;
       }
 
@@ -53,7 +53,7 @@ router.post('/signup', (req, res, next) => {
           next(err);
           return;
         }
-        res.redirect('/');
+        res.redirect('/dashboard');
         //redirect to homepage
       });
     }
@@ -77,8 +77,8 @@ router.post('/login', passport.authenticate(
   'local',
   //1st arg -> name of the strategy used to log in
   {
-    successRedirect: '/',
-    failureRedirect: '/'
+    successRedirect: '/dashboard',
+    failureRedirect: '/login'
     //Redirect accordingly (if login is successful or fails)
   }
   //2nd arg -> settings object

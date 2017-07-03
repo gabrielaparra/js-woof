@@ -44,17 +44,19 @@ passport.use(new LocalStrategy(
     passwordField: 'loginPassword'
   },
   (loginEmail, loginPassword, next) => {
-    console.log("dfhsdbfjhsdbfshjdb" + loginPassword);
+    console.log("==========>" + loginPassword);
     //2nd arg -> callback, called when a user tries to log in
     //#1 is there an account with the provided email?
     UserModel.findOne(
-      { loginEmail },
+      { email: loginEmail },
       (err, userFromDb) => {
         if (err) {
           next(err);
+          console.log('failer');
           return;
         }
         if (userFromDb === null) {
+          console.log('came in null');
           //In passport, if you call next() with 'false'
           //it means LOGIN FAILED
           next(null, false);
