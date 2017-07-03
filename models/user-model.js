@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const PetModel = require('./pet-model.js');
+// const PetModel = require('./pet-model.js');
 
 const userSchema = new Schema({
-  name: {
+  fullName: {
     type: String,
     required: true,
     minlength: [ 3, 'Name must be at least 3 characters long' ],
@@ -24,7 +24,7 @@ const userSchema = new Schema({
     required: true,
     minlength: [ 8, 'Password must be at least 8 characters long' ]
   },
-  pets: [ PetModel.schema ]
+  // pets: [ PetModel.schema ]
   //schema of the PetModel, different from the Schema const
   //to import the user's pets
 });
