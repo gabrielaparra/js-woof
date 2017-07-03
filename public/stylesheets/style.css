@@ -134,7 +134,7 @@ banner
 	position: relative;
 }
 .bg-color{
-	background-color: RGBA(13, 70, 83, 0);
+	background-color: rgba(0, 0, 0, 0.2);
 	min-height: 650px;
 }
 .banner-info{
@@ -162,7 +162,7 @@ banner
 
 .btn-appoint:hover {
 	color: #fff;
-	background-color: rgba(77, 218, 135, 1);
+	background-color: rgba(77, 218, 135, 0.9);
 }
 
 .overlay-detail a i {
@@ -519,4 +519,7 @@ footer
     .banner-text h1{
         font-size: 24px;
     }
+		.navbar-toggle {
+			background-color: rgba(221, 221, 221, 0.6);
+		}
 }

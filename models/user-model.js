@@ -11,10 +11,6 @@ const userSchema = new Schema({
     //minlength & maxlength for strings ONLY
     maxlength: 25
   },
-  username: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
