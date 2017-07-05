@@ -13,8 +13,8 @@ const passport     = require('passport');
 require('./config/passport-config.js');
 //Run the code written in passport-config.js
 
-mongoose.connect('mongodb://localhost/woof');
-                          //use 'woof' as the database
+mongoose.connect(process.env.MONGODB_URI);
+                          //using 'woof' as the database
 
 const app = express();
 
