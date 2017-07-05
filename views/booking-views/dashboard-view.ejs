@@ -3,7 +3,7 @@
 <h3> Schedule an Appointment </h3>
 
 <form action="/booking" method="post" role="form" id="booking" class="contactForm">
-  <div class="form-group">
+  <!-- <div class="form-group">
     <input type="text" name="petsName" class="form-control br-radius-zero"
            id="name" placeholder="Pet's Name" data-rule="minlen:4"
     <div class="validation"></div>
@@ -12,7 +12,19 @@
     <input type="string" class="form-control br-radius-zero" name="petsBreed"
            id="breed" placeholder="Pet's Breed" data-rule="email"
     <div class="validation"></div>
+  </div> -->
+
+
+  <div class="form-group">
+    <div class="dropdown">
+      <span>Choose Your Pet</span>
+      <div class="dropdown-content">
+        <a href="/new-pet"> Save a New Pet </a>
+      </div>
+    </div>
   </div>
+
+
   <div class="form-group">
     <label for="appointment-date"> Click on the arrow to select a date: </label>
     <input type="date" class="form-control br-radius-zero" name="appointmentDate"

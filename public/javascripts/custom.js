@@ -1,8 +1,10 @@
+//FOR THE HOMEPAGE-------------------------------------------------
+
 (function ($) {
-    
+
     // Add smooth scrolling to all links in navbar
     $(".navbar a,a.btn-appoint, .quick-info li a, .overlay-detail a").on('click', function(event) {
-        
+
         var hash = this.hash;
         if( hash ) {
             event.preventDefault();
@@ -14,7 +16,7 @@
         }
 
     });
-       
+
     //jQuery to collapse the navbar on scroll
     $(window).scroll(function() {
         if ($(".navbar-default").offset().top > 50) {
@@ -23,5 +25,5 @@
             $(".navbar-fixed-top").removeClass("top-nav-collapse");
         }
     });
-    
+
 })(jQuery);

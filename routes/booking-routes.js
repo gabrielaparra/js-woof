@@ -31,5 +31,14 @@ router.post('/booking', (req, res, next) => {
   });
 });
 
+//Saving a New Pet
+router.get('/new-pet', (req, res, next) => {
+  res.render('booking-views/new-pet-view.ejs');
+});
+
+router.post('/new-pet', (req, res, next) => {
+
+});
+
 
 module.exports = router;
