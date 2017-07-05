@@ -3,13 +3,12 @@ const Schema = mongoose.Schema;
 
 const bookingSchema = new Schema(
   {
-    petsName: { type: String },
-    petsBreed: { type: String },
+    petID: { type: Schema.Types.ObjectId },
     appointmentDate: { type: Date },
     chosenPackage: { type: String },
     specialRequests: { type: String },
     //the ID of the user who owns the room
-    petOwner: [ Schema.Types.ObjectId ]
+    petOwner: { type: Schema.Types.ObjectId }
   },
   {
     timestamps: true

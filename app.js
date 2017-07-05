@@ -10,6 +10,8 @@ const session      = require('express-session');
 //The passport middlewares have to go after the session middleware
 const passport     = require('passport');
 
+require('dotenv').config();
+
 require('./config/passport-config.js');
 //Run the code written in passport-config.js
 

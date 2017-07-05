@@ -66,7 +66,7 @@ router.post('/signup', (req, res, next) => {
 //1st step: displaying login form
 router.get('/login', (req, res, next) => {
   if (req.user) {
-    res.redirect('/');
+    res.redirect('/dashboard');
   } else {
     res.render('authorization-views/login-view.ejs');
   }

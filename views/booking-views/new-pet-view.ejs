@@ -1,22 +1,21 @@
 <form action="/new-pet" method="post" role="form" id="signup" class="contactForm">
   <div class="form-group">
     <input type="text" name="petsName" class="form-control br-radius-zero"
-           id="name" placeholder="Your Full Name" data-rule="minlen:4"
+           id="name" placeholder="Your Pet's Name" data-rule="minlen:4"
            data-msg="Please enter at least 4 characters" />
   </div>
   <div class="form-group">
-    <input type="email" class="form-control br-radius-zero" name="signupEmail"
-           id="email" placeholder="Your Email" data-rule="email"
+    <input type="email" class="form-control br-radius-zero" name="petsBreed"
+           id="breed" placeholder="Pet's Breed" data-rule="email"
            data-msg="Please enter a valid email address" />
   </div>
   <div class="form-group">
-    <input type="tel" class="form-control br-radius-zero" name="signupPhoneNumber"
-           id="email" placeholder="Your Phone Number (Optional)" data-rule="email"/>
+    <input type="text" class="form-control br-radius-zero" name="petsAge"
+           id="age" placeholder="Pet's Age (Optional)" data-rule="email"/>
   </div>
   <div class="form-group">
-    <input type="password" class="form-control br-radius-zero" name="signupPassword"
-           id="subject" placeholder="Your Password" data-rule="minlen:4"
-           data-msg="Please enter at least 8 characters" />
+    <input type="file" class="form-control br-radius-zero" name="petsPicture"
+           id="subject" placeholder="Pet's Picture (Optional)" data-rule="minlen:4"/>
   </div>
   <div class="form-action">
     <button type="submit" class="btn btn-form">SAVE PET</button>
