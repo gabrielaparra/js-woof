@@ -128,12 +128,18 @@ router.get('/dashboard/bookings/:myId/delete', (req, res, next) => {
 
 
 //---------------SAVING A NEW PET-------------------
+//Step 1
+router.get('/new-pet', (req, res, next) => {
+  res.render('booking-views/new-pet-view.ejs');
+});
+
+//Step 2
 router.post('/new-pet', (req, res, next) => {
   const thePet = new PetModel ({
     petsName: req.body.petsName,
     petsBreed: req.body.petsBreed,
     petsAge: req.body.petsAge,
-    petsPicture: req.body.petsPicture,
+    imagerUrl: req.body.petsPicture,
     petOwner: req.user._id
   });
 
@@ -146,6 +152,23 @@ router.post('/new-pet', (req, res, next) => {
     res.redirect('/dashboard');
   });
 });
-//---------END OF SAVING A NEW PET-------------------
+//----------END OF SAVING A NEW PET-----------------
+
+//----------------DELETE A PET----------------------
+// Delete from a LINK (GET)
+router.get('/dashboard/pets/:myId/delete', (req, res, next) => {
+  PetModel.findByIdAndRemove(
+    req.params.myId,
+    (err, petFromDb) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.redirect('/dashboard');
+    }
+  );
+});
+
+//--------------END OF DELETING A PET--------------
 
 module.exports = router;

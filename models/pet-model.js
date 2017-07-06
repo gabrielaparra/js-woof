@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 const petSchema = new Schema(
   {
-    petsName: { type: String },
-    petsBreed: { type: String },
-    petsAge: { type: String },
-    petsPicture: { type: String },
+    petsName: { type: String, required: true },
+    petsBreed: { type: String, required: true },
+    petsAge: { type: Number, required: true },
+    imagerUrl: { type: String, default: 'images/dog-icon.png' },
     //the ID of the user who owns the pet
     petOwner: { type: Schema.Types.ObjectId }
   },
