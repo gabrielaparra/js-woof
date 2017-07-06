@@ -152,7 +152,7 @@ router.post('/new-pet',
     petsName: req.body.petsName,
     petsBreed: req.body.petsBreed,
     petsAge: req.body.petsAge,
-    imagerUrl: '/uploads/' + req.file.filename,
+    imageUrl: '/uploads/' + req.file.filename,
     petOwner: req.user._id
   });
 
