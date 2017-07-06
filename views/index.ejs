@@ -15,11 +15,15 @@
 				    <div class="collapse navbar-collapse navbar-right" id="myNavbar">
 				      <ul class="nav navbar-nav">
 				        <li class="active"><a href="/">Home</a></li>
-								<li class=""><a href="#">Account</a></li>
-				        <li class=""><a href="/services">Services</a></li>
-								<li class=""><a href="/gallery">Gallery</a></li>
-				        <li class=""><a href="#about">About</a></li>
-				        <li class=""><a href="#contact">Contact</a></li>
+								<% if (currentUser) { %>
+									<li><a href="/dashboard">Account</a></li>
+								<% } else { %>
+									<li class=""><a href="#" data-toggle="modal" data-target="#myModal">Account</a></li>
+								<% } %>
+				        <li><a href="/services">Services</a></li>
+								<li><a href="/gallery">Gallery</a></li>
+				        <li><a href="#about">About</a></li>
+				        <li><a href="#contact">Contact</a></li>
 				      </ul>
 				    </div>
 				</div>
@@ -38,7 +42,52 @@
 								<br>Give your dog the best kind of grooming.
               </p>
 							<br>
-							<a href="/login" class="btn btn-appoint">MAKE AN APPOINTMENT</a>
+
+							<!-- Button trigger login modal-->
+							<button type="button" class="btn btn-appoint" data-toggle="modal" data-target="#myModal">
+							  MAKE AN APPOINTMENT
+							</button>
+
+							<!-- Login Modal -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="myModalLabel">Log In</h4>
+							      </div>
+							      <div class="modal-body">
+											<!-- LOG IN -->
+							        <h3>Welcome Back!</h3>
+							        <div class="space"></div>
+
+							        <form action="/login" method="post" role="form" id="login">
+							          <div class="form-group">
+							            <input type="email" class="form-control br-radius-zero" name="loginEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email address" />
+							          </div>
+							          <div class="form-group">
+							            <input type="password" class="form-control br-radius-zero" name="loginPassword" id="subject" placeholder="Your Password" data-rule="minlen:4" data-msg="Please enter at least 8 characters" />
+							          </div>
+							          <div class="form-action">
+							            <button type="submit" class="btn btn-form btn-login">LOG IN NOW</button>
+							          </div>
+							        </form>
+						    			<!-- REGISTER -->
+											<div class="space"></div>
+					            <h3 class="cnt-ttl">First Time? Register</h3>
+					            <p>Sign up today and get 10% off your first visit</p>
+											<div class="space"></div>
+					            <a href="/signup" class="btn btn-form">SIGN UP NOW</a>
+
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+							      </div>
+							    </div>
+							  </div>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -155,7 +204,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h2 class="ser-title">see what patients are saying?</h2>
+					<h2 class="ser-title">what our customers are saying</h2>
 					<hr class="botm-line">
 				</div>
 				<div class="col-md-4 col-sm-4">
