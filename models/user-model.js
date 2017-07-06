@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// const PetModel = require('./pet-model.js');
 
 const userSchema = new Schema({
   fullName: {
@@ -20,10 +19,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: [ 8, 'Password must be at least 8 characters long' ]
-  },
-  // pets: [ PetModel.schema ]
-  //schema of the PetModel, different from the Schema const
-  //to import the user's pets
+  }
 });
 
 const UserModel = mongoose.model('User', userSchema);

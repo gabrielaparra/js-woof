@@ -2,65 +2,10 @@
 
 <a href="/book-appointment"></a> Schedule an Appointment </a>
 
-<form action="/booking" method="post" role="form" id="booking" class="contactForm">
+<% myPets.forEach((pet) => { %>
+  <p> <%= pet.petsName %> </p>
+<% }); %>
 
-  <select name="bookingPet">
-    <% myPets.forEach((pet) => { %>
-      <option value="<%= pet._id %>"> <%= pet.petsName %> </option>
-    <% }); %>
-    <option value=""> Save a New Pet </option>
-  </select>
-
-  <div class="form-group">
-    <label for="appointment-date"> Click on the arrow to select a date: </label>
-    <input type="date" class="form-control br-radius-zero" name="appointmentDate"
-           id="appointment-date" data-rule="email"/>
-    <div class="validation"></div>
-  </div>
-  <div class="form-group">
-    <label for="chosen-package"> Select a Package: </label>
-    <br>
-    <input id="chosen-package" type="radio" name="chosenPackage" value="Bronze">
-    Bronze
-    <br>
-    <input id="chosen-package" type="radio" name="chosenPackage" value="Silver">
-    Silver
-    <br>
-    <input id="chosen-package" type="radio" name="chosenPackage" value="Gold">
-    Gold
-    <br>
-    <div class="validation"></div>
-  </div>
-  <label for="special-requests"> Any special requests? Please let us know: </label>
-  <textarea id="special-requests" type="string" class="form-control br-radius-zero"
-            name="specialRequests" data-rule="email"/>
-  </textarea>
-  <div class="validation"></div>
-  <div class="form-action">
-    <button type="submit" class="btn btn-form">Submit</button>
-  </div>
-</form>
-
-<form action="/new-pet" method="post" role="form" id="signup" class="contactForm">
-  <div class="form-group">
-    <input type="text" name="petsName" class="form-control br-radius-zero"
-           id="name" placeholder="Your Pet's Name" data-rule="minlen:4"
-           data-msg="Please enter at least 4 characters" />
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control br-radius-zero" name="petsBreed"
-           id="breed" placeholder="Pet's Breed" data-rule="email"
-           data-msg="Please enter a valid email address" />
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control br-radius-zero" name="petsAge"
-           id="age" placeholder="Pet's Age (Optional)" data-rule="email"/>
-  </div>
-  <div class="form-group">
-    <input type="file" class="form-control br-radius-zero" name="petsPicture"
-           id="subject" placeholder="Pet's Picture (Optional)" data-rule="minlen:4"/>
-  </div>
-  <div class="form-action">
-    <button type="submit" class="btn btn-form">SAVE PET</button>
-  </div>
-</form>
+<% myBookings.forEach((booking) => { %>
+  <p> <%= booking.chosenPackage %> </p>
+<% }); %>

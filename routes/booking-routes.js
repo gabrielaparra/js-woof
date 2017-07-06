@@ -4,7 +4,7 @@ const PetModel = require('../models/pet-model.js');
 const router  = express.Router();
 
 //Displaying User's Dashboard
-router.get('/dashboard', (req, res, next) => {
+router.get('/book-appointment', (req, res, next) => {
   PetModel.find(
     { petOwner :req.user._id },
     (err, petsFromDb) => {
@@ -13,25 +13,49 @@ router.get('/dashboard', (req, res, next) => {
         return;
       }
       res.locals.myPets = petsFromDb;
-      res.render('booking-views/dashboard-view.ejs');
+      res.render('booking-views/book-appointment-view.ejs');
     }
   );
-
 });
 
-// router.get('/dashboard', (req, res, next) => {
-//   BookingModel.find(
-//     { petOwner: req.user._id },
-//     (err, bookingsFromDb) => {
-//       if (err) {
-//         next (err);
-//         return;
-//       }
-//       res.locals.myBookings = bookingsFromDb;
-//       res.render('booking-views/dashboard-view.ejs');
-//     }
-//   );
-// });
+router.get('/dashboard', (req, res, next) => {
+  BookingModel.find(
+    { petOwner: req.user._id },
+    (err, bookingsFromDb) => {
+      if (err) {
+        next (err);
+        return;
+      }
+
+      PetModel.find(
+        { petOwner: req.user._id },
+        (err, petsFromDb) => {
+          if (err) {
+            next(err);
+            return;
+          }
+
+          res.locals.myPets = petsFromDb;
+          res.locals.myBookings = bookingsFromDb;
+          res.render('booking-views/dashboard-view.ejs');
+        });
+    }
+  );
+});
+
+router.get('/booking', (req, res, next) => {
+  PetModel.find(
+    { petOwner: req.user._id },
+    (err, petsFromDb) => {
+      if (err) {
+        next(err);
+        return;
+      }
+
+      res.locals.myPets = petsFromDb;
+      res.render('booking-views/book-appointment-view.ejs');
+  });
+});
 
 //Saving booking appointment
 router.post('/booking', (req, res, next) => {
@@ -57,7 +81,6 @@ router.post('/booking', (req, res, next) => {
 
 //Saving a New Pet
 router.post('/new-pet', (req, res, next) => {
-  console.log("AHHHHHHHHHHHHH");
   const thePet = new PetModel ({
     petsName: req.body.petsName,
     petsBreed: req.body.petsBreed,

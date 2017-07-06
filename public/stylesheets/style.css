@@ -181,7 +181,7 @@ banner
 services
 ***************************************/
 .icon i{
-	color: #0cb8b6;
+	color: rgba(70, 173, 112, 1);
 	font-size: 45px;
 	margin-bottom: 25px;
 }
@@ -191,14 +191,15 @@ services
 .icon-info h4{
 	padding-bottom: 15px;
 }
-.icon-info p{
-	font-size: 15px !important;
+
+.icon-info ul{
+	list-style-type: disc;
 }
 /***************************************
 cta-1
 ***************************************/
 .schedule-tab {
-	background-color: #0CB8B6;
+	background-color: #ffb737;
 	float: left;
 }
 .medi-info{
@@ -653,6 +654,7 @@ body{
     transform: translate3d(0, -100px, 0);
     opacity: 1;
 }
+
 @media (min-width: 768px) {
 .gal-container .modal-dialog {
     width: 55%;
@@ -678,23 +680,4 @@ footer{
 footer a,footer a:hover{
     color: #88C425;
 }
-
 /*---------------------------------------------------*/
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
