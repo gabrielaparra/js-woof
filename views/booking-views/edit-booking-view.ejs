@@ -1,0 +1,34 @@
+<h2> Edit Appointment for <%= bookingDetails.petsName %> </h2>
+
+<form action="/booking" method="post" role="form" id="booking" class="contactForm">
+
+  <div class="form-group">
+    <label for="appointment-date"> Click on the arrow to select a date: </label>
+    <input type="date" class="form-control br-radius-zero" name="appointmentDate"
+           id="appointment-date" data-rule="email"/>
+    <div class="validation"></div>
+  </div>
+  <div class="form-group">
+    <label for="chosen-package"> Select a Package: </label>
+    <br>
+    <input id="chosen-package" type="radio" name="chosenPackage" value="Bronze">
+    Bronze
+    <br>
+    <input id="chosen-package" type="radio" name="chosenPackage" value="Silver">
+    Silver
+    <br>
+    <input id="chosen-package" type="radio" name="chosenPackage" value="Gold">
+    Gold
+    <br>
+    <div class="validation"></div>
+  </div>
+  <label for="special-requests"> Any special requests? Please let us know: </label>
+  <textarea id="special-requests" type="string" class="form-control br-radius-zero"
+            name="specialRequests" data-rule="email"/>
+            <%= bookingDetails.specialRequests %>
+  </textarea>
+  <div class="validation"></div>
+  <div class="form-action">
+    <button type="submit" class="btn btn-form">Submit</button>
+  </div>
+</form>

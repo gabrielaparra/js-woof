@@ -1,11 +1,30 @@
 <h2> Dashboard </h2>
 
-<a href="/book-appointment"></a> Schedule an Appointment </a>
+<a href="/booking"> Schedule an Appointment </a>
+
+<h3> Upcoming Appointments </h3>
+
+<ul>
+  <% myBookings.forEach((booking) => { %>
+    <li>
+      <p> This appointment is for <%= booking.petsName %> </p>
+      <p> We'll see you on <%= booking.appointmentDate %> </p>
+      <p> You chose the <%= booking.chosenPackage %> Package </p>
+      <p> Special Requests:
+        <% if (booking.specialRequests === "  " ) { %>
+            None
+        <% } else { %>
+          <%= booking.specialRequests %>
+        <% } %>
+      </p>
+      <a href="/dashboard/bookings/<%= booking._id %>/edit">
+        Edit This Appointment
+      </a>
+    </li>
+  <% }); %>
+</ul>
+
 
 <% myPets.forEach((pet) => { %>
   <p> <%= pet.petsName %> </p>
-<% }); %>
-
-<% myBookings.forEach((booking) => { %>
-  <p> <%= booking.chosenPackage %> </p>
 <% }); %>

@@ -82,8 +82,8 @@ app.use('/', authorizationRoutes);
 const bookingRoutes = require('./routes/booking-routes.js');
 app.use('/', bookingRoutes);
 
-const galleryRoutes = require('./routes/gallery-routes.js');
-app.use('/', galleryRoutes);
+const otherRoutes = require('./routes/other-routes.js');
+app.use('/', otherRoutes);
 
 //----------------END OF ROUTES---------------------
 

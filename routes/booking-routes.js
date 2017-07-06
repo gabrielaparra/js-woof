@@ -3,21 +3,7 @@ const BookingModel = require('../models/booking-model.js');
 const PetModel = require('../models/pet-model.js');
 const router  = express.Router();
 
-//Displaying User's Dashboard
-router.get('/book-appointment', (req, res, next) => {
-  PetModel.find(
-    { petOwner :req.user._id },
-    (err, petsFromDb) => {
-      if (err) {
-        next(err);
-        return;
-      }
-      res.locals.myPets = petsFromDb;
-      res.render('booking-views/book-appointment-view.ejs');
-    }
-  );
-});
-
+//Displaying the User's Dashboard
 router.get('/dashboard', (req, res, next) => {
   BookingModel.find(
     { petOwner: req.user._id },
@@ -43,25 +29,26 @@ router.get('/dashboard', (req, res, next) => {
   );
 });
 
+//----------------BOOK APPOINTMENT-------------------
+//1st step to book an appointment
 router.get('/booking', (req, res, next) => {
   PetModel.find(
-    { petOwner: req.user._id },
+    { petOwner :req.user._id },
     (err, petsFromDb) => {
       if (err) {
         next(err);
         return;
       }
-
       res.locals.myPets = petsFromDb;
       res.render('booking-views/book-appointment-view.ejs');
-  });
+    }
+  );
 });
 
-//Saving booking appointment
+//2nd step to book an appointment
 router.post('/booking', (req, res, next) => {
-  console.log(req.body.specialRequests);
   const theBooking = new BookingModel ({
-    petID: req.body.bookingPet,
+    petsName: req.body.bookingPet,
     appointmentDate: req.body.appointmentDate,
     chosenPackage: req.body.chosenPackage,
     specialRequests: req.body.specialRequests,
@@ -78,6 +65,26 @@ router.post('/booking', (req, res, next) => {
     res.redirect('dashboard');
   });
 });
+//----------END OF BOOKING AN APPOINTMENT-----------
+
+//--------------EDIT AN APPOINTMENT-----------------
+//Step 1
+router.get('/dashboard/bookings/:myId/edit', (req, res, next) => {
+  BookingModel.findById(
+    req.params.myId,             //1st arg -> the ID to find in the DB
+    (err, bookingFromDb) => {   //2nd arg -> callback
+      if (err) {
+        //use next() to skup to the ERROR page
+        next(err);
+        return;
+      }
+      res.locals.bookingDetails = bookingFromDb;
+      res.render('booking-views/edit-booking-view.ejs');
+    }
+  );
+});
+
+//---------END OF EDITING AN APPOINTMENT------------
 
 //Saving a New Pet
 router.post('/new-pet', (req, res, next) => {
@@ -89,11 +96,8 @@ router.post('/new-pet', (req, res, next) => {
     petOwner: req.user._id
   });
 
-console.log(thePet);
-
   thePet.save((err) => {
     if (err) {
-      console.log("THAT DIDN'T WORK");
       next(err);
       return;
     }

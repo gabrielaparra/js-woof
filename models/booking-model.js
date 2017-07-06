@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const bookingSchema = new Schema(
   {
-    petID: { type: Schema.Types.ObjectId },
-    appointmentDate: { type: Date },
-    chosenPackage: { type: String },
+    petsName: { type: String },
+    appointmentDate: { type: Date, required: true },
+    chosenPackage: { type: String, required: true },
     specialRequests: { type: String },
     //the ID of the user who owns the room
     petOwner: { type: Schema.Types.ObjectId }

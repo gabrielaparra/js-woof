@@ -1,8 +1,9 @@
-<form action="/book-appointment" method="post" role="form" id="booking" class="contactForm">
+<form action="/dashboard/bookings/<%= bookingDetails._id %>/update" method="post"
+      role="form">
 
   <select name="bookingPet">
     <% myPets.forEach((pet) => { %>
-      <option value="<%= pet._id %>"> <%= pet.petsName %> </option>
+      <option value="<%= pet.petsName %>"> <%= pet.petsName %> </option>
     <% }); %>
     <option value=""> Save a New Pet </option>
   </select>
