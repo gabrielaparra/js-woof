@@ -19,7 +19,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: [ 8, 'Password must be at least 8 characters long' ]
-  }
+  },
+  imageUrl: { type: String, default: '/images/user-icon.png' }
 });
 
 const UserModel = mongoose.model('User', userSchema);

@@ -28,6 +28,7 @@ router.get('/dashboard', (req, res, next) => {
             return;
           }
 
+          res.locals.currentUser = req.user;
           res.locals.myPets = petsFromDb;
           res.locals.myBookings = bookingsFromDb;
           res.render('booking-views/dashboard-view.ejs');

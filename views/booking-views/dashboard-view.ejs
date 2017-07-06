@@ -1,54 +1,113 @@
 <div class="container">
-  <h2> Dashboard </h2>
-
-  <a href="/booking"> Schedule an Appointment </a>
-  <br>
-  <a href="/new-pet"> Register a new Pet </a>
-
-  <h3> Upcoming Appointments </h3>
-
-  <ul>
-    <% myBookings.forEach((booking) => { %>
-      <li>
-        <p> This appointment is for <%= booking.petsName %> </p>
-        <p> We'll see you on <%= booking.appointmentDate %> </p>
-        <p> You chose the <%= booking.chosenPackage %> Package </p>
-        <p> Special Requests:
-          <% if (booking.specialRequests === "  " ) { %>
-              None
-          <% } else { %>
-            <%= booking.specialRequests %>
-          <% } %>
-        </p>
-        <a href="/dashboard/bookings/<%= booking._id %>/edit">
-          Edit This Appointment
-        </a>
-        <br>
-        <a href="/dashboard/bookings/<%= booking._id %>/delete">
-          Delete This Appointment
-        </a>
-      </li>
-    <% }); %>
-  </ul>
-
-  <h3> My Pets </h3>
-  <p> Registered Pets get a free soothing massage every 5 grooming sessions </p>
-
-  <ul>
-    <% myPets.forEach((pet) => { %>
-      <li>
-        <p> <%= pet.petsName %> </p>
-        <img src="<%= pet.imageUrl %>">
-        <p> <%= pet.petsBreed %>,
-          <% if (pet.petsAge === 1) { %>
-            <%= pet.petsAge %> year old. </p>
-          <% } else { %>
-            <%= pet.petsAge %> years old. </p>
-          <% } %>
-          <a href="/dashboard/pets/<%= pet._id %>/delete">
-            Unregister Pet
-          </a>
-      </li>
-    <% }); %>
-  </ul>
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USER PICTURE -->
+				<div class="profile-userpic">
+					<img src="<%= currentUser.imageUrl %>" class="img-responsive">
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<%= currentUser.fullName%>
+					</div>
+					<div class="profile-usertitle-job">
+						Doggie Lover
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btn-success btn-sm">
+					  Update Picture
+					</button>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<a href="#"><i class="fa fa-plus"></i>
+							  New Appointment
+              </a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-plus"></i>
+							  Register Pet
+              </a>
+						</li>
+						<li>
+							<a href="#" target="_blank"><i class="fa fa-star"></i>
+							  Week's Promotions
+              </a>
+						</li>
+						<li>
+							<a href="#">
+							<i class="fa fa-sign-out"></i>
+							  Log Out
+              </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		<div class="col-md-9">
+            <div class="profile-content">
+			   Some user related content goes here...
+            </div>
+		</div>
+	</div>
 </div>
+
+    <a href="/booking"> Schedule an Appointment </a>
+    <br>
+    <a href="/new-pet"> Register a new Pet </a>
+
+    <h3> Upcoming Appointments </h3>
+
+    <ul>
+      <% myBookings.forEach((booking) => { %>
+        <li>
+          <p> This appointment is for <%= booking.petsName %> </p>
+          <p> We'll see you on <%= booking.appointmentDate %> </p>
+          <p> You chose the <%= booking.chosenPackage %> Package </p>
+          <p> Special Requests:
+            <% if (booking.specialRequests === "  " ) { %>
+                None
+            <% } else { %>
+              <%= booking.specialRequests %>
+            <% } %>
+          </p>
+          <a href="/dashboard/bookings/<%= booking._id %>/edit">
+            Edit This Appointment
+          </a>
+          <br>
+          <a href="/dashboard/bookings/<%= booking._id %>/delete">
+            Delete This Appointment
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+
+    <h3> My Pets </h3>
+    <p> Registered Pets get a free soothing massage every 5 grooming sessions </p>
+
+    <ul>
+      <% myPets.forEach((pet) => { %>
+        <li>
+          <p> <%= pet.petsName %> </p>
+          <img src="<%= pet.imageUrl %>">
+          <p> <%= pet.petsBreed %>,
+            <% if (pet.petsAge === 1) { %>
+              <%= pet.petsAge %> year old. </p>
+            <% } else { %>
+              <%= pet.petsAge %> years old. </p>
+            <% } %>
+            <a href="/dashboard/pets/<%= pet._id %>/delete">
+              Unregister Pet
+            </a>
+        </li>
+      <% }); %>
+    </ul>
