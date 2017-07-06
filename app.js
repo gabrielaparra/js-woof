@@ -28,7 +28,7 @@ app.set('view engine', 'ejs');
 app.locals.title = 'Woof';
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.png')));
 console.log("========================");
 console.log(path.join(__dirname, 'public', 'favicon.png'));
 app.use(logger('dev'));

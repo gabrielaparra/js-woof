@@ -1,4 +1,4 @@
-<form action="/new-pet" method="post" role="form" id="signup" class="contactForm">
+<form action="/new-pet" method="post" role="form" id="signup" enctype="multipart/form-data">
   <div class="form-group">
     <input type="text" name="petsName" class="form-control br-radius-zero"
            id="name" placeholder="Your Pet's Name" data-rule="minlen:4"
@@ -15,7 +15,7 @@
   </div>
   <div class="form-group">
     <input type="file" class="form-control br-radius-zero" name="petsPicture"
-           id="subject" placeholder="Pet's Picture (Optional)" data-rule="minlen:4"/>
+           id="picture" placeholder="Pet's Picture (Optional)" />
   </div>
   <div class="form-action">
     <button type="submit" class="btn btn-form">SAVE PET</button>

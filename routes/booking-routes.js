@@ -2,6 +2,13 @@ const express = require('express');
 const BookingModel = require('../models/booking-model.js');
 const PetModel = require('../models/pet-model.js');
 const router  = express.Router();
+const multer = require('multer');
+const myUploader = multer({
+    // "dest" (destination) is a multer setting
+    // that specifies WHERE to put uploaded files
+  dest: __dirname + '/../public/uploads/'
+    // save uploaded files inside public/uploads/
+});
 
 //---------------DISPLAY DASHBOARD------------------
 router.get('/dashboard', (req, res, next) => {
@@ -134,12 +141,18 @@ router.get('/new-pet', (req, res, next) => {
 });
 
 //Step 2
-router.post('/new-pet', (req, res, next) => {
+router.post('/new-pet',
+  // Use multer to process a SINGLE file upload from the input
+  myUploader.single('petsPicture'),
+        // <input name="petsPicture">
+  (req, res, next) => {
+  // multer will create "req.file" that contains information
+  // about the upload
   const thePet = new PetModel ({
     petsName: req.body.petsName,
     petsBreed: req.body.petsBreed,
     petsAge: req.body.petsAge,
-    imagerUrl: req.body.petsPicture,
+    imagerUrl: '/uploads/' + req.file.filename,
     petOwner: req.user._id
   });
 
