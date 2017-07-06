@@ -3,7 +3,7 @@ const BookingModel = require('../models/booking-model.js');
 const PetModel = require('../models/pet-model.js');
 const router  = express.Router();
 
-//Displaying the User's Dashboard
+//---------------DISPLAY DASHBOARD------------------
 router.get('/dashboard', (req, res, next) => {
   BookingModel.find(
     { petOwner: req.user._id },
@@ -29,7 +29,7 @@ router.get('/dashboard', (req, res, next) => {
   );
 });
 
-//----------------BOOK APPOINTMENT-------------------
+//----------------CREATE APPOINTMENT-------------------
 //1st step to book an appointment
 router.get('/booking', (req, res, next) => {
   PetModel.find(
@@ -65,7 +65,8 @@ router.post('/booking', (req, res, next) => {
     res.redirect('dashboard');
   });
 });
-//----------END OF BOOKING AN APPOINTMENT-----------
+//----------END OF CREATING AN APPOINTMENT-----------
+
 
 //--------------EDIT AN APPOINTMENT-----------------
 //Step 1
@@ -84,9 +85,49 @@ router.get('/dashboard/bookings/:myId/edit', (req, res, next) => {
   );
 });
 
+//Step 2
+router.post('/dashboard/bookings/:myId/update', (req, res, next) => {
+  BookingModel.findByIdAndUpdate(
+    req.params.myId,              //1st arg -> id of document to update
+    {                            //2nd arg -> object fields to update
+      appointmentDate: req.body.appointmentDate,
+      chosenPackage: req.body.chosenPackage,
+      specialRequests: req.body.specialRequests,
+    },
+    (err, bookingFromDb) => {    //3rd arg -> callback
+      if (err) {
+        //use next() to skup to the ERROR page
+        next(err);
+        return;
+      }
+      res.redirect('/dashboard');
+      //every time there's a successful post we must redirect
+    }
+  );
+});
+
 //---------END OF EDITING AN APPOINTMENT------------
 
-//Saving a New Pet
+
+//-------------DELETE AN APPOINTMENT----------------
+// Delete from a LINK (GET)
+router.get('/dashboard/bookings/:myId/delete', (req, res, next) => {
+  BookingModel.findByIdAndRemove(
+    req.params.myId,
+    (err, bookingFromDb) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.redirect('/dashboard');
+    }
+  );
+});
+
+//----------END OF DELETING AN APPOINTMENT-----------
+
+
+//---------------SAVING A NEW PET-------------------
 router.post('/new-pet', (req, res, next) => {
   const thePet = new PetModel ({
     petsName: req.body.petsName,
@@ -105,6 +146,6 @@ router.post('/new-pet', (req, res, next) => {
     res.redirect('/dashboard');
   });
 });
-
+//---------END OF SAVING A NEW PET-------------------
 
 module.exports = router;

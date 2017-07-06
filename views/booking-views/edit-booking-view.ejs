@@ -1,6 +1,6 @@
 <h2> Edit Appointment for <%= bookingDetails.petsName %> </h2>
 
-<form action="/booking" method="post" role="form" id="booking" class="contactForm">
+<form action="/dashboard/bookings/<%= bookingDetails._id %>/update" method="post" role="form" id="booking" class="contactForm">
 
   <div class="form-group">
     <label for="appointment-date"> Click on the arrow to select a date: </label>
