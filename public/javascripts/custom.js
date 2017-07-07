@@ -26,4 +26,11 @@
         }
     });
 
+    $('.edit-btn').click((ev) => {
+      const myId = $(ev.currentTarget).attr('id');
+      $('#booking').attr('action', '/dashboard/bookings/' + myId + '/update');
+    });
+
+
+
 })(jQuery);

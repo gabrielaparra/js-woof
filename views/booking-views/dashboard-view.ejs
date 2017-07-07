@@ -76,7 +76,7 @@
                     <a href="/dashboard/bookings/<%= booking._id %>/delete">
                       <i class="fa fa-trash"></i>
                     </a>
-                    <a href="#" data-toggle="modal" data-target="#editAppointment">
+                    <a href="#" data-toggle="modal" data-target="#editAppointment" id="<%= booking._id %>" class="edit-btn">
                       <i class="fa fa-pencil"></i>
                     </a>
                   </div>
@@ -103,23 +103,27 @@
             <div class="col-md-4">
               <div class="panel panel-primary">
                 <div class="panel-heading panel-clear">
-                  <img src="<%= pet.imageUrl %>" class="img-responsive">
+                  <div class="img-wrap">
+                    <img src="<%= pet.imageUrl %>" class="img-responsive">
+                    <span class="img-description">
+                      <p> <%= pet.petsName %> </p>
+                      <p>
+                        <%= pet.petsBreed %>, <%= pet.petsAge %>
+                        <% if (pet.petsAge === 1) { %>
+                          year old.
+                        <% } else { %>
+                          years old.
+                        <% } %>
+                      </p>
+                    </span>
+                  </div>
                 </div>
                 <div class="panel-body">
-                  <p> <%= pet.petsName %> </p>
-                  <p>
-                    <%= pet.petsBreed %>, <%= pet.petsAge %>
-                    <% if (pet.petsAge === 1) { %>
-                      year old.
-                    <% } else { %>
-                      years old.
-                    <% } %>
-                  </p>
                   <div class="edit-delete-options">
-                    <a href="/dashboard/bookings/<%= pet._id %>/delete">
+                    <a href="/dashboard/pets/<%= pet._id %>/delete">
                       <i class="fa fa-trash"></i>
                     </a>
-                    <a href="#" data-toggle="modal" data-target="#editAppointment">
+                    <a href="#" data-toggle="modal" data-target="#editPet">
                       <i class="fa fa-pencil"></i>
                     </a>
                   </div>
@@ -205,7 +209,7 @@
       </div>
       <div class="modal-body">
         <!-- EDIT APPOINTMENT FORM -->
-        <form action="/bookings/update" method="post" role="form" id="booking">
+        <form action="/dashboard/bookings/:myId/update" method="post" role="form" id="booking">
           <div class="form-group">
             <label for="appointment-date"> Click on the arrow to select a date: </label>
             <input type="date" class="form-control br-radius-zero" name="appointmentDate"

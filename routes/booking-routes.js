@@ -78,7 +78,7 @@ router.post('/booking', (req, res, next) => {
 
 //--------------EDIT AN APPOINTMENT-----------------
 
-router.post('/bookings/update', (req, res, next) => {
+router.post('/dashboard/bookings/:myId/update', (req, res, next) => {
   BookingModel.findByIdAndUpdate(
     req.params.myId,              //1st arg -> id of document to update
     {                            //2nd arg -> object fields to update
