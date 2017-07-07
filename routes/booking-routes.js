@@ -94,7 +94,7 @@ router.get('/dashboard/bookings/:myId/edit', (req, res, next) => {
 });
 
 //Step 2
-router.post('/dashboard/bookings/:myId/update', (req, res, next) => {
+router.post('/bookings/update', (req, res, next) => {
   BookingModel.findByIdAndUpdate(
     req.params.myId,              //1st arg -> id of document to update
     {                            //2nd arg -> object fields to update
@@ -153,9 +153,13 @@ router.post('/new-pet',
     petsName: req.body.petsName,
     petsBreed: req.body.petsBreed,
     petsAge: req.body.petsAge,
-    imageUrl: '/uploads/' + req.file.filename,
+    imageUrl: req.file ? '/uploads/' + req.file.filename : undefined,
     petOwner: req.user._id
   });
+
+  // if (req.file) {
+  //   thePet.imageUrl = '/uploads/' + req.file.filename;
+  // }
 
   thePet.save((err) => {
     if (err) {

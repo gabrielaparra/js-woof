@@ -27,3 +27,14 @@
     });
 
 })(jQuery);
+
+// $(function(){
+// $(window).bind("resize",function(){
+//     if($(this).width() <500){
+//     $('#fixed-sidebar').removeClass('fixed-sidebar');
+//     }
+//     else{
+//     $('#dashboard-content').removeClass('col-lg-offset-3');
+//     }
+//   });
+// });

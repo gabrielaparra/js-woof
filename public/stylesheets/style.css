@@ -1,6 +1,7 @@
 body {
 	font-family: 'Open Sans', sans-serif;
 	line-height: 20px;
+	background: #f7f7f7;
 	color: #999999;
 	font-size: 300;
 	font-size: 17px;
@@ -566,20 +567,20 @@ body{
 	padding: 0px;
 }
 .modal-open .gal-item button.close{
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background-color: #000;
-    opacity: 1;
-    color: #fff;
-    z-index: 999;
-    right: -12px;
-    top: -12px;
-    border-radius: 50%;
-    font-size: 15px;
-    border: 2px solid #fff;
-    line-height: 25px;
-    -webkit-box-shadow: 0 0 1px 1px rgba(0,0,0,0.35);
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #000;
+  opacity: 1;
+  color: #fff;
+  z-index: 999;
+  right: -12px;
+  top: -12px;
+  border-radius: 50%;
+  font-size: 15px;
+  border: 2px solid #fff;
+  line-height: 25px;
+  -webkit-box-shadow: 0 0 1px 1px rgba(0,0,0,0.35);
 	box-shadow: 0 0 1px 1px rgba(0,0,0,0.35);
 }
 .modal-open .gal-item button.close:focus{
@@ -665,10 +666,6 @@ footer a,footer a:hover{
 }
 /*---------------------------------------------------*/
 
-body {
-  background: #F1F3FA;
-}
-
 /* Profile container */
 .profile {
   margin: 20px 0;
@@ -678,7 +675,30 @@ body {
 .profile-sidebar {
   padding: 20px 0 10px 0;
   background: #fff;
+	position: fixed;
+	width: inherit;
+	max-width: inherit;
+	border: 1px solid lightgray;
 }
+
+@media (max-width: 900px) {
+	.profile-sidebar {
+		position: static;
+	}
+}
+
+.profile-content {
+	border: 1px solid lightgray;
+}
+
+.panel-body p {
+	font-size: 16px;
+}
+
+.fa-trash {
+	color: red;
+}
+
 
 .profile-userpic img {
   float: none;
@@ -770,7 +790,7 @@ body {
 .profile-content {
   padding: 20px;
   background: #fff;
-  min-height: 460px;
+  min-height: 500px;
 }
 
 .btn, .btn-success, .btn-sm {
@@ -778,12 +798,45 @@ body {
 }
 
 .panel, .panel-primary {
+	text-align: center;
 	border-radius: 0;
-	border: 1px solid rgba(70, 173, 112, 0.9);
+	border: 2px solid rgba(70, 173, 112, 0.9);
+	padding
 }
 
 .panel-primary>.panel-heading {
 	border-radius: 0;
 	border: none;
 	background-color: rgba(70, 173, 112, 0.9);
+}
+
+.panel-primary>.panel-clear {
+	border-radius: 0;
+	border-bottom: 2px solid rgba(70, 173, 112, 0.9);
+	background-color: rgba(255, 255, 255, 0.2);
+	padding: 0;
+}
+
+.date-month {
+	font-size: 40px;
+}
+
+.date-day {
+	font-size: 60px;
+}
+
+.col-md-4 {
+	padding: 15px 20px;
+}
+
+@media (min-width: 992px){
+	.fixed-sidebar {
+		width: 19%;
+	}
+}
+
+@media (min-width: 768px) {
+	.fixed-sidebar {
+		width: 19%;
+	}
 }

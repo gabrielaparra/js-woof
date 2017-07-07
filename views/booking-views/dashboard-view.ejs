@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row profile">
-		<div class="col-md-3">
+		<div class="col-md-3 fixed-sidebar" id="fixed-sidebar">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USER PICTURE -->
 				<div class="profile-userpic">
@@ -43,7 +43,7 @@
               </a>
 						</li>
             <li>
-							<a href="#"><i class="fa fa-star"></i>
+							<a href="/services"><i class="fa fa-star"></i>
 							  Service Packages Details
               </a>
 						</li>
@@ -63,7 +63,7 @@
 				<!-- END MENU -->
 			</div>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-9 col-md-offset-3">
       <div class="profile-content">
         <!-- APPOINTMENTS SECTION -->
         <h3> Appointments </h3>
@@ -73,17 +73,20 @@
               <div class="panel panel-primary">
                 <div class="panel-heading">
                   <% const dateArray = booking.appointmentDate.toDateString().split(' ') %>
-                  <p> <%= dateArray[1] %> </p>
-                  <p> <%= dateArray[0] %>, <%= dateArray[2] %> </p>
+                  <p class="date-month"> <%= dateArray[1] %> </p>
+                  <br>
+                  <div><p class="date-day"> <%= dateArray[2] %> </p></div>
                 </div>
                 <div class="panel-body">
                   <p> For <%= booking.petsName %>, <%=booking.chosenPackage %> Package </p>
-                  <a href="/dashboard/bookings/<%= booking._id %>/delete">
-                    <i class="fa fa-trash"></i>
-                  </a>
-                  <a href="/dashboard/bookings/<%= booking._id %>/edit">
-                    <i class="fa fa-pencil"></i>
-                  </a>
+                    <div>
+                    <a href="/dashboard/bookings/<%= booking._id %>/delete">
+                      <i class="fa fa-trash"></i>
+                    </a>
+                    <a href="#" data-toggle="modal" data-target="#editAppointment">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
         	  </div>
@@ -97,7 +100,7 @@
           <% myPets.forEach((pet) => { %>
             <div class="col-md-4">
               <div class="panel panel-primary">
-                <div class="panel-heading">
+                <div class="panel-heading panel-clear">
                   <img src="<%= pet.imageUrl %>" class="img-responsive">
                 </div>
                 <div class="panel-body">
@@ -137,7 +140,7 @@
       </div>
       <div class="modal-body">
         <!-- NEW APPOINTMENT FORM -->
-        <form action="booking" method="post"
+        <form action="/booking" method="post"
               role="form">
 
           <label for="select-pet"> Select a Registered Pet: </label>
@@ -170,6 +173,7 @@
           <label for="special-requests"> Any special requests? Please let us know: </label>
           <textarea id="special-requests" type="string" class="form-control br-radius-zero"
                     name="specialRequests" data-rule="email"/></textarea>
+                    <br>
           <div class="form-action">
             <button type="submit" class="btn btn-form">Submit</button>
           </div>
@@ -186,6 +190,59 @@
 <!-- End of New Appointment Modal -->
 
 
+<!-- Edit an Appointment Modal -->
+<div class="modal fade" id="editAppointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Appointment</h4>
+      </div>
+      <div class="modal-body">
+        <!-- EDIT APPOINTMENT FORM -->
+        <form action="/bookings/update" method="post" role="form" id="booking">
+          <div class="form-group">
+            <label for="appointment-date"> Click on the arrow to select a date: </label>
+            <input type="date" class="form-control br-radius-zero" name="appointmentDate"
+                   id="appointment-date" data-rule="email"/>
+            <div class="validation"></div>
+          </div>
+          <div class="form-group">
+            <label for="chosen-package"> Select a Package: </label>
+            <br>
+            <input id="chosen-package" type="radio" name="chosenPackage" value="Bronze" checked="checked">
+            Bronze
+            <br>
+            <input id="chosen-package" type="radio" name="chosenPackage" value="Silver">
+            Silver
+            <br>
+            <input id="chosen-package" type="radio" name="chosenPackage" value="Gold">
+            Gold
+            <br>
+            <div class="validation"></div>
+          </div>
+          <label for="special-requests"> Any special requests? Please let us know: </label>
+          <textarea id="special-requests" type="string" class="form-control br-radius-zero"
+                    name="specialRequests" data-rule="email"/>
+                    <%= myBookings.specialRequests %>
+          </textarea>
+          <br>
+          <div class="form-action">
+            <button type="submit" class="btn btn-form">Submit</button>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Editing an Appointment Modal -->
+
+
 <!-- New Pet Modal -->
 <div class="modal fade" id="newPet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -196,7 +253,7 @@
       </div>
       <div class="modal-body">
         <!-- NEW PET FORM -->
-        <form action="pet" method="post" role="form" id="signup" enctype="multipart/form-data">
+        <form action="/new-pet" method="post" role="form" id="signup" enctype="multipart/form-data">
           <div class="form-group">
             <input type="text" name="petsName" class="form-control br-radius-zero"
                    id="name" placeholder="Your Pet's Name" data-rule="minlen:4"
@@ -209,7 +266,7 @@
           </div>
           <div class="form-group">
             <input type="number" class="form-control br-radius-zero" name="petsAge"
-                   id="age" placeholder="Pet's Age (Optional)" data-rule="email"/>
+                   id="age" placeholder="Pet's Age" data-rule="email"/>
           </div>
           <div class="form-group">
             <input type="file" class="form-control br-radius-zero" name="petsPicture"
