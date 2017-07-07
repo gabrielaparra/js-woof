@@ -692,11 +692,27 @@ footer a,footer a:hover{
 }
 
 .panel-body p {
-	font-size: 16px;
+	font-size: 14px;
+	color: darkgray;
+	margin: 0;
+}
+
+.edit-delete-options {
+	text-align: right;
 }
 
 .fa-trash {
 	color: red;
+	padding: 5px 7px;
+	background-color: white;
+	border-radius: 20px;
+}
+
+.fa-pencil {
+	color: rgba(255, 183, 55, 1);
+	padding: 5px 6px;
+	background-color: white;
+	border-radius: 20px;
 }
 
 
@@ -801,13 +817,13 @@ footer a,footer a:hover{
 	text-align: center;
 	border-radius: 0;
 	border: 2px solid rgba(70, 173, 112, 0.9);
-	padding
 }
 
 .panel-primary>.panel-heading {
 	border-radius: 0;
 	border: none;
 	background-color: rgba(70, 173, 112, 0.9);
+	padding-bottom: 25px;
 }
 
 .panel-primary>.panel-clear {
@@ -818,6 +834,7 @@ footer a,footer a:hover{
 }
 
 .date-month {
+	padding-top: 20px;
 	font-size: 40px;
 }
 

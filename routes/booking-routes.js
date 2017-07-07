@@ -77,23 +77,7 @@ router.post('/booking', (req, res, next) => {
 
 
 //--------------EDIT AN APPOINTMENT-----------------
-//Step 1
-router.get('/dashboard/bookings/:myId/edit', (req, res, next) => {
-  BookingModel.findById(
-    req.params.myId,             //1st arg -> the ID to find in the DB
-    (err, bookingFromDb) => {   //2nd arg -> callback
-      if (err) {
-        //use next() to skup to the ERROR page
-        next(err);
-        return;
-      }
-      res.locals.bookingDetails = bookingFromDb;
-      res.render('booking-views/edit-booking-view.ejs');
-    }
-  );
-});
 
-//Step 2
 router.post('/bookings/update', (req, res, next) => {
   BookingModel.findByIdAndUpdate(
     req.params.myId,              //1st arg -> id of document to update
@@ -188,5 +172,12 @@ router.get('/dashboard/pets/:myId/delete', (req, res, next) => {
 });
 
 //--------------END OF DELETING A PET--------------
+
+
+//-------------UPDATE A USER'S PROFILE-------------
+
+
+
+//---------END OF UPDATING A USER'S PROFILE------------
 
 module.exports = router;
