@@ -107,8 +107,9 @@
                     <img src="<%= pet.imageUrl %>" class="img-responsive">
                     <span class="img-description">
                       <p> <%= pet.petsName %> </p>
+                      <p> <%= pet.petsBreed %> </p>
                       <p>
-                        <%= pet.petsBreed %>, <%= pet.petsAge %>
+                        <%= pet.petsAge %>
                         <% if (pet.petsAge === 1) { %>
                           year old.
                         <% } else { %>

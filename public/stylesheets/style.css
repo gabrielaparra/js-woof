@@ -863,6 +863,10 @@ footer a,footer a:hover{
   position: relative;
 }
 
+.img-wrap p {
+	margin-top: 30px;
+}
+
 .img-description {
   position: absolute;
   top: 0;

@@ -14,7 +14,7 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   if (req.body.signupEmail === '' || req.body.signupPassword === '' || req.body.signupFullName === '') {
     res.locals.messageForDumbUsers = 'Please provide your name, email, and password.';
-    res.render('index.ejs');
+    res.render('authorization-views/signup-view.ejs');
     return;
   }
 
