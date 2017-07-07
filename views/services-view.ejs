@@ -1,3 +1,130 @@
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USER PICTURE -->
+				<div class="profile-userpic">
+					<img src="<%= currentUser.imageUrl %>" class="img-responsive">
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<%= currentUser.fullName%>
+					</div>
+					<div class="profile-usertitle-job">
+						Doggie Lover
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btn-success btn-sm">
+					  Update Picture
+					</button>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+              <a href="#" data-toggle="modal" data-target="#newPet"><i class="fa fa-plus"></i>
+                Register Pet
+              </a>
+						</li>
+						<li>
+              <a href="#" data-toggle="modal" data-target="#newAppointment"><i class="fa fa-plus"></i>
+                New Appointment
+              </a>
+						</li>
+            <li>
+							<a href="#" target="_blank"><i class="fa fa-star"></i>
+							  Service Packages Details
+              </a>
+						</li>
+						<li>
+							<a href="#" target="_blank"><i class="fa fa-star"></i>
+							  Week's Promotions
+              </a>
+						</li>
+						<li>
+							<a href="#">
+							<i class="fa fa-sign-out"></i>
+							  Log Out
+              </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		<div class="col-md-9">
+      <div class="profile-content">
+        <!-- APPOINTMENTS SECTION -->
+        <h3> Appointments </h3>
+        <div class="row">
+          <% myBookings.forEach((booking) => { %>
+            <div class="col-md-4">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <% const dateArray = booking.appointmentDate.toDateString().split(' ') %>
+                  <p> <%= dateArray[1] %> </p>
+                  <p> <%= dateArray[0] %>, <%= dateArray[2] %> </p>
+                </div>
+                <div class="panel-body">
+                  <p> For <%= booking.petsName %>, <%=booking.chosenPackage %> Package </p>
+                  <a href="/dashboard/bookings/<%= booking._id %>/delete">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                  <a href="/dashboard/bookings/<%= booking._id %>/edit">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                </div>
+              </div>
+        	  </div>
+          <% }); %>
+        </div>
+
+        <!-- PETS SECTION -->
+        <h3> My Pets </h3>
+        <p> Registered pets get a free soothing massage every 5 grooming sessions </p>
+        <div class="row">
+          <% myPets.forEach((pet) => { %>
+            <div class="col-md-4">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <img src="<%= pet.imageUrl %>" class="img-responsive">
+                </div>
+                <div class="panel-body">
+                  <p> <%= pet.petsName %> </p>
+                  <p>
+                    <%= pet.petsBreed %>, <%= pet.petsAge %>
+                    <% if (pet.petsAge === 1) { %>
+                      year old.
+                    <% } else { %>
+                      years old.
+                    <% } %>
+                  </p>
+                  <a href="/dashboard/pets/<%= pet._id %>/delete">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                  <a href="/dashboard/pets/<%= pet._id %>/edit">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                </div>
+              </div>
+        	  </div>
+          <% }); %>
+        </div>
+
+      </div>
+		</div>
+	</div>
+</div>
+
+
+
+
 <!--services-->
 <section id="service" class="section-padding">
   <div class="container">

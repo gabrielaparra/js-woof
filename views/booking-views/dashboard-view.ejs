@@ -28,22 +28,32 @@
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li class="active">
-							<a href="/booking"><i class="fa fa-plus"></i>
-							  New Appointment
+              <a href="#" data-toggle="modal" data-target="#newPet"><i class="fa fa-plus"></i>
+                Register Pet
               </a>
 						</li>
 						<li>
-							<a href="/new-pet"><i class="fa fa-plus"></i>
-							  Register Pet
+              <a href="#" data-toggle="modal" data-target="#newAppointment"><i class="fa fa-plus"></i>
+                New Appointment
+              </a>
+						</li>
+            <li>
+							<a href="/" target="_blank"><i class="fa fa-home"></i>
+							  See Homepage
+              </a>
+						</li>
+            <li>
+							<a href="#"><i class="fa fa-star"></i>
+							  Service Packages Details
               </a>
 						</li>
 						<li>
-							<a href="#" target="_blank"><i class="fa fa-star"></i>
+							<a href="#"><i class="fa fa-star"></i>
 							  Week's Promotions
               </a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="/logout">
 							<i class="fa fa-sign-out"></i>
 							  Log Out
               </a>
@@ -55,81 +65,167 @@
 		</div>
 		<div class="col-md-9">
       <div class="profile-content">
-
-
+        <!-- APPOINTMENTS SECTION -->
+        <h3> Appointments </h3>
         <div class="row">
           <% myBookings.forEach((booking) => { %>
             <div class="col-md-4">
               <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <% const dateArray = booking.appointmentDate.toDateString().split(' ') %>
-                      <p> <%= dateArray[1] %> </p>
-                      <p> <%= dateArray[0] %>, <%= dateArray[2] %> </p>
+                  <% const dateArray = booking.appointmentDate.toDateString().split(' ') %>
+                  <p> <%= dateArray[1] %> </p>
+                  <p> <%= dateArray[0] %>, <%= dateArray[2] %> </p>
                 </div>
                 <div class="panel-body">
-                      <p> For <%= booking.petsName %>, <%=booking.chosenPackage %> Package </p>
-                      <a href="/dashboard/bookings/<%= booking._id %>/delete">
-                        <i class="fa fa-trash"></i>
-                      </a>
-                      <a href="/dashboard/bookings/<%= booking._id %>/edit">
-                        <i class="fa fa-pencil"></i>
-                      </a>
+                  <p> For <%= booking.petsName %>, <%=booking.chosenPackage %> Package </p>
+                  <a href="/dashboard/bookings/<%= booking._id %>/delete">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                  <a href="/dashboard/bookings/<%= booking._id %>/edit">
+                    <i class="fa fa-pencil"></i>
+                  </a>
                 </div>
               </div>
         	  </div>
           <% }); %>
         </div>
 
+        <!-- PETS SECTION -->
+        <h3> My Pets </h3>
+        <p> Registered pets get a free soothing massage every 5 grooming sessions </p>
+        <div class="row">
+          <% myPets.forEach((pet) => { %>
+            <div class="col-md-4">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <img src="<%= pet.imageUrl %>" class="img-responsive">
+                </div>
+                <div class="panel-body">
+                  <p> <%= pet.petsName %> </p>
+                  <p>
+                    <%= pet.petsBreed %>, <%= pet.petsAge %>
+                    <% if (pet.petsAge === 1) { %>
+                      year old.
+                    <% } else { %>
+                      years old.
+                    <% } %>
+                  </p>
+                  <a href="/dashboard/pets/<%= pet._id %>/delete">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                  <a href="/dashboard/pets/<%= pet._id %>/edit">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                </div>
+              </div>
+        	  </div>
+          <% }); %>
+        </div>
 
       </div>
 		</div>
 	</div>
 </div>
 
+<!-- New Appointment Modal -->
+<div class="modal fade" id="newAppointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">New Appointment</h4>
+      </div>
+      <div class="modal-body">
+        <!-- NEW APPOINTMENT FORM -->
+        <form action="booking" method="post"
+              role="form">
 
-    <ul>
-      <% myBookings.forEach((booking) => { %>
-        <li>
-          <% const dateArray = booking.appointmentDate.toDateString().split(' ') %>
+          <label for="select-pet"> Select a Registered Pet: </label>
+          <select name="bookingPet">
+            <% myPets.forEach((pet) => { %>
+              <option value="<%= pet.petsName %>"> <%= pet.petsName %> </option>
+            <% }); %>
+          </select>
 
-          <p> This appointment is for <%= booking.petsName %> </p>
-          <p> We'll see you on <%= dateArray[0] %> </p>
-          <p> You chose the <%= booking.chosenPackage %> Package </p>
-          <p> Special Requests:
-            <% if (booking.specialRequests === "  " ) { %>
-                None
-            <% } else { %>
-              <%= booking.specialRequests %>
-            <% } %>
-          </p>
-          <a href="/dashboard/bookings/<%= booking._id %>/edit">
-            Edit This Appointment
-          </a>
-          <br>
-          <a href="/dashboard/bookings/<%= booking._id %>/delete">
-            Delete This Appointment
-          </a>
-        </li>
-      <% }); %>
-    </ul>
+          <div class="form-group">
+            <label for="appointment-date"> Select a date: </label>
+            <input type="date" class="form-control br-radius-zero" name="appointmentDate"
+                   id="appointment-date" data-rule="email"/>
+            <div class="validation"></div>
+          </div>
+          <div class="form-group">
+            <label for="chosen-package"> Select a Package: </label>
+            <br>
+            <input id="chosen-package" type="radio" name="chosenPackage" value="Bronze">
+            Bronze
+            <br>
+            <input id="chosen-package" type="radio" name="chosenPackage" value="Silver">
+            Silver
+            <br>
+            <input id="chosen-package" type="radio" name="chosenPackage" value="Gold">
+            Gold
+            <br>
+            <div class="validation"></div>
+          </div>
+          <label for="special-requests"> Any special requests? Please let us know: </label>
+          <textarea id="special-requests" type="string" class="form-control br-radius-zero"
+                    name="specialRequests" data-rule="email"/></textarea>
+          <div class="form-action">
+            <button type="submit" class="btn btn-form">Submit</button>
+          </div>
+        </form>
 
-    <h3> My Pets </h3>
-    <p> Registered Pets get a free soothing massage every 5 grooming sessions </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of New Appointment Modal -->
 
-    <ul>
-      <% myPets.forEach((pet) => { %>
-        <li>
-          <p> <%= pet.petsName %> </p>
-          <img src="<%= pet.imageUrl %>">
-          <p> <%= pet.petsBreed %>,
-            <% if (pet.petsAge === 1) { %>
-              <%= pet.petsAge %> year old. </p>
-            <% } else { %>
-              <%= pet.petsAge %> years old. </p>
-            <% } %>
-            <a href="/dashboard/pets/<%= pet._id %>/delete">
-              Unregister Pet
-            </a>
-        </li>
-      <% }); %>
-    </ul>
+
+<!-- New Pet Modal -->
+<div class="modal fade" id="newPet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">New Pet</h4>
+      </div>
+      <div class="modal-body">
+        <!-- NEW PET FORM -->
+        <form action="pet" method="post" role="form" id="signup" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="text" name="petsName" class="form-control br-radius-zero"
+                   id="name" placeholder="Your Pet's Name" data-rule="minlen:4"
+                   data-msg="Please enter at least 4 characters" />
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control br-radius-zero" name="petsBreed"
+                   id="breed" placeholder="Pet's Breed" data-rule="email"
+                   data-msg="Please enter a valid email address" />
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control br-radius-zero" name="petsAge"
+                   id="age" placeholder="Pet's Age (Optional)" data-rule="email"/>
+          </div>
+          <div class="form-group">
+            <input type="file" class="form-control br-radius-zero" name="petsPicture"
+                   id="picture" placeholder="Pet's Picture (Optional)" />
+          </div>
+          <div class="form-action">
+            <button type="submit" class="btn btn-form">SAVE PET</button>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of New Pet Modal -->

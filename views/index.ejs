@@ -18,12 +18,15 @@
 								<% if (currentUser) { %>
 									<li><a href="/dashboard">Account</a></li>
 								<% } else { %>
-									<li class=""><a href="#" data-toggle="modal" data-target="#myModal">Account</a></li>
+									<li><a href="#" data-toggle="modal" data-target="#myModal">Account</a></li>
 								<% } %>
 				        <li><a href="/services">Services</a></li>
 								<li><a href="/gallery">Gallery</a></li>
 				        <li><a href="#about">About</a></li>
 				        <li><a href="#contact">Contact</a></li>
+								<% if (currentUser) { %>
+									<li><a href="/logout">Log Out</a></li>
+								<% } %>
 				      </ul>
 				    </div>
 				</div>
@@ -44,11 +47,19 @@
 							<br>
 
 							<!-- Button trigger login modal-->
-							<button type="button" class="btn btn-appoint" data-toggle="modal" data-target="#myModal">
-							  MAKE AN APPOINTMENT
-							</button>
+							<% if (currentUser) { %>
+								<!-- If the user is signed in take them to the dashboard -->
+								<a href="/dashboard" class="btn btn-appoint">
+									MAKE AN APPOINTMENT
+								</a>
+							<% } else { %>
+								<!-- Else, show the user the login/register modal -->
+								<button type="button" class="btn btn-appoint" data-toggle="modal" data-target="#myModal">
+									MAKE AN APPOINTMENT
+								</button>
+							<% } %>
 
-							<!-- Login Modal -->
+							<!-- Login/Register Modal -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 							  <div class="modal-dialog" role="document">
 							    <div class="modal-content">
@@ -87,7 +98,7 @@
 							    </div>
 							  </div>
 							</div>
-
+							<!-- End of Login/Register Modal -->
 						</div>
 					</div>
 				</div>
