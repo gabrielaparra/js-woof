@@ -28,12 +28,12 @@
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li class="active">
-							<a href="#"><i class="fa fa-plus"></i>
+							<a href="/booking"><i class="fa fa-plus"></i>
 							  New Appointment
               </a>
 						</li>
 						<li>
-							<a href="#"><i class="fa fa-plus"></i>
+							<a href="/new-pet"><i class="fa fa-plus"></i>
 							  Register Pet
               </a>
 						</li>
@@ -54,24 +54,46 @@
 			</div>
 		</div>
 		<div class="col-md-9">
-            <div class="profile-content">
-			   Some user related content goes here...
-            </div>
+      <div class="profile-content">
+
+
+        <div class="row">
+          <% myBookings.forEach((booking) => { %>
+            <div class="col-md-4">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <% const dateArray = booking.appointmentDate.toDateString().split(' ') %>
+                      <p> <%= dateArray[1] %> </p>
+                      <p> <%= dateArray[0] %>, <%= dateArray[2] %> </p>
+                </div>
+                <div class="panel-body">
+                      <p> For <%= booking.petsName %>, <%=booking.chosenPackage %> Package </p>
+                      <a href="/dashboard/bookings/<%= booking._id %>/delete">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                      <a href="/dashboard/bookings/<%= booking._id %>/edit">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                </div>
+              </div>
+        	  </div>
+          <% }); %>
+        </div>
+
+
+      </div>
 		</div>
 	</div>
 </div>
 
-    <a href="/booking"> Schedule an Appointment </a>
-    <br>
-    <a href="/new-pet"> Register a new Pet </a>
-
-    <h3> Upcoming Appointments </h3>
 
     <ul>
       <% myBookings.forEach((booking) => { %>
         <li>
+          <% const dateArray = booking.appointmentDate.toDateString().split(' ') %>
+
           <p> This appointment is for <%= booking.petsName %> </p>
-          <p> We'll see you on <%= booking.appointmentDate %> </p>
+          <p> We'll see you on <%= dateArray[0] %> </p>
           <p> You chose the <%= booking.chosenPackage %> Package </p>
           <p> Special Requests:
             <% if (booking.specialRequests === "  " ) { %>
