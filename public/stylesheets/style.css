@@ -133,6 +133,7 @@ banner
 	background-size: cover;
 	min-height: 650px;
 	position: relative;
+	background-position: center;
 }
 .bg-color{
 	background-color: rgba(0, 0, 0, 0.2);
@@ -889,4 +890,30 @@ footer a,footer a:hover{
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.signup-wrapper {
+	height: 100vh;
+	background-image: url('../images/signup-background.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.wrapper-overlay {
+	padding-top: 20vh;
+	background-color: rgba(0, 0, 0, 0.2);
+	height: 100vh;
+}
+
+.signup-form-container {
+	margin: auto;
+  width: 50vh;
+	padding: 40px 20px;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 3px;
+}
+
+.signupForm {
+	text-align: center;
 }

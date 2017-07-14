@@ -53,7 +53,7 @@ router.post('/signup', (req, res, next) => {
           next(err);
           return;
         }
-        res.redirect('/dashboard');
+        res.redirect('/');
         //redirect to homepage
       });
     }
@@ -83,7 +83,8 @@ router.post('/login', passport.authenticate(
   }
   //2nd arg -> settings object
 ));
-// //------------------END LOG IN----------------------
+//------------------END LOG IN----------------------
+
 
 //---------------------LOG OUT-------------------------
 router.get('/logout', (req, res, next) => {
@@ -91,5 +92,6 @@ router.get('/logout', (req, res, next) => {
     req.logout();
     res.redirect('/');
 });
+//------------------END OF LOG OUT--------------------
 
 module.exports = router;
